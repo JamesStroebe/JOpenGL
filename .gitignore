@@ -1,12 +1,8 @@
-.vs
+# Directories
+.vs/
+/bin/
+bin-int/
 
-[Dd]ebug
-
-*.vcxproj
-*.vcxproj.*
-
-[Bb]in
-[Bb]in-int
-[Dd]ocs
-[Ll]ib*
+# Files
+*.user
 
