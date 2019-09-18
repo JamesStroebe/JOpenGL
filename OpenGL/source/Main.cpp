@@ -21,10 +21,9 @@ int main() {
 
 	gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 
-	glClearColor(0.07, 0.03, 0.18, 1.0);
-
 	VertexArray va = VertexArray();
 	va.Bind();
+
 	float positions[3 * 3] = {
 		-0.5f, -0.5f, 0.0f,
 		 0.5f, -0.5f, 0.0f,
@@ -53,16 +52,18 @@ int main() {
 	Shader shader("assets/shaders/Shader.glsl");
 	shader.Bind();
 
+	Renderer::Clear();
 	while (!glfwWindowShouldClose(window)) {
-		glClear(GL_COLOR_BUFFER_BIT);
+		Renderer::Clear(0.07f, 0.03f, 0.18f, 1.0f);
 
-		vb.Bind();
-		ib.Bind();
 		shader.Bind();
-		glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
+		va.Bind();
+		va.GetIndexBuffer()->Bind();
+		Renderer::DrawIndexed(va.GetIndexBuffer()->GetCount());
+		va.GetIndexBuffer()->Unbind();
+		va.Unbind();
 		shader.Unbind();
-		ib.Unbind();
-		vb.Unbind();
+		
 		
 		glfwPollEvents();
 		glfwSwapBuffers(window);

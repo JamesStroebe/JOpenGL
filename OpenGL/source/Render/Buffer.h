@@ -112,7 +112,6 @@ private:
 
 class IndexBuffer {
 public:
-	IndexBuffer();
 	IndexBuffer(void* data, uint32_t size);
 	~IndexBuffer();
 

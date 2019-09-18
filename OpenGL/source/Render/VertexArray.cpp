@@ -60,6 +60,6 @@ void VertexArray::AddVertexBuffer(VertexBuffer& vertexBuffer) {
 void VertexArray::SetIndexBuffer(IndexBuffer& indexBuffer) {
 	indexBuffer.Bind();
 	GLCall(glBindVertexArray(m_RendererID));
-	m_IndexBuffer = indexBuffer;
+	m_IndexBuffer = std::make_shared<IndexBuffer>(indexBuffer);
 	
 }

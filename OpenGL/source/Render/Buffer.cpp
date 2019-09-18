@@ -20,8 +20,6 @@ void VertexBuffer::Unbind() const {
 	GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
 }
 
-IndexBuffer::IndexBuffer() {}
-
 IndexBuffer::IndexBuffer(void* data, uint32_t size) :
 	m_Count(size / sizeof(uint32_t)) {
 	GLCall(glGenBuffers(1, &m_RendererID));

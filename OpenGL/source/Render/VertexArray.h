@@ -16,11 +16,11 @@ public:
 	void SetIndexBuffer(IndexBuffer& indexBuffer);
 
 	std::vector<VertexBuffer>& GetVertexBuffers() { return m_VertexBuffers; }
-	IndexBuffer GetIndexBuffer() { return m_IndexBuffer; }
+	std::shared_ptr<IndexBuffer> GetIndexBuffer() { return m_IndexBuffer; }
 private:
 
 	RendererID m_RendererID;
 	uint32_t m_VertexBufferIndex = 0;
 	std::vector<VertexBuffer> m_VertexBuffers;
-	IndexBuffer m_IndexBuffer;
+	std::shared_ptr<IndexBuffer> m_IndexBuffer;
 };
