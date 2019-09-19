@@ -1,5 +1,9 @@
 #include "Render/VertexArray.h"
 #include "Render/Shader.h"
+#include "Render/Texture.h"
+
+#include "Render/Renderer.h"
+
 
 #include <glfw/glfw3.h>
 
@@ -24,10 +28,11 @@ int main() {
 	VertexArray va = VertexArray();
 	va.Bind();
 
-	float positions[3 * 3] = {
-		-0.5f, -0.5f, 0.0f,
-		 0.5f, -0.5f, 0.0f,
-		 0.0f,  0.5f, 0.0f
+	float positions[5 * 4] = {
+		-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+		 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+		 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+		-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 	};
 
 	VertexBuffer vb(positions, sizeof(positions));
@@ -35,12 +40,13 @@ int main() {
 
 	BufferLayout layout = {
 		{ShaderDataType::Float3, "a_Position"},
+		{ShaderDataType::Float2, "a_TexCoords"}
 		
 	};
 	vb.SetLayout(layout);
 
-	unsigned int indices[3] = {
-		0, 1, 2
+	unsigned int indices[6] = {
+		0, 1, 2, 2, 3, 0
 	};
 
 	IndexBuffer ib(indices, sizeof(indices));
@@ -51,6 +57,11 @@ int main() {
 
 	Shader shader("assets/shaders/Shader.glsl");
 	shader.Bind();
+
+	Texture2D tex("assets/textures/woodpanel.png");
+	tex.Bind();
+
+	shader.SetUniform1i("u_Texture", 0);
 
 	Renderer::Clear();
 	while (!glfwWindowShouldClose(window)) {

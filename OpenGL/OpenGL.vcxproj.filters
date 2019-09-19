@@ -30,6 +30,9 @@
     <ClCompile Include="source\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Render\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Render\Buffer.h">
@@ -47,8 +50,22 @@
     <ClInclude Include="source\Render\GLError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\Render\Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Utils\Buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\Shader.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\textures\Tex.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\textures\woodpanel.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

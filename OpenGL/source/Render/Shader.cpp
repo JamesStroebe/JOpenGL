@@ -138,3 +138,37 @@ void Shader::Compile() {
 
 	//m_RendererID = program;
 }
+
+void Shader::SetUniform1i(const std::string& name, int value) {
+	GLCall(glUniform1i(GetUniformLocation(name), value));
+}
+
+void Shader::SetUniform1f(const std::string& name, float value) {
+	GLCall(glUniform1f(GetUniformLocation(name), value));
+}
+
+void Shader::SetUniform3f(const std::string& name, const glm::vec3& vec) {
+	GLCall(glUniform3f(GetUniformLocation(name), vec.x, vec.y, vec.z));
+}
+
+void Shader::SetUniform4f(const std::string& name, const glm::vec4& vec) {
+	GLCall(glUniform4f(GetUniformLocation(name), vec.x, vec.y, vec.z, vec.w));
+}
+
+void Shader::SetUniformMat3f(const std::string& name, const glm::mat3& mat) {
+	GLCall(glUniformMatrix3fv(GetUniformLocation(name), 1, GL_FALSE, &mat[0][0]));
+}
+
+void Shader::SetUniformMat4f(const std::string& name, const glm::mat4& mat) {
+	GLCall(glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &mat[0][0]));
+}
+
+int Shader::GetUniformLocation(const std::string& name) {
+	if (m_UniformLocationCache.find(name) != m_UniformLocationCache.end())
+		return m_UniformLocationCache[name];
+	GLCall(int location = glGetUniformLocation(m_RendererID, name.c_str()));
+	if (location == -1)
+		std::cout << "Uniform " << name << " does not exist";
+	m_UniformLocationCache[name] = location;
+	return location;
+}

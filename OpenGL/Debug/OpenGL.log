@@ -1,3 +1,1 @@
-﻿  Main.cpp
-C:\Dev\Game Engneering Club\JOpenGL\OpenGL\source\Main.cpp(24,36): warning C4305:  'argument': truncation from 'double' to 'GLfloat'
-  OpenGL.vcxproj -> C:\Dev\Game Engneering Club\JOpenGL\Debug\OpenGL.exe
+﻿  OpenGL.vcxproj -> C:\Dev\Game Engneering Club\JOpenGL\Debug\OpenGL.exe
